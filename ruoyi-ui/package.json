@@ -1,8 +1,8 @@
 {
-  "name": "ruoyi",
+  "name": "eswell",
   "version": "3.6.0",
-  "description": "若依管理系统",
-  "author": "若依",
+  "description": "埃斯韦尔管理系统",
+  "author": "埃斯韦尔",
   "license": "MIT",
   "scripts": {
     "dev": "vue-cli-service serve",
@@ -33,7 +33,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/y_project/RuoYi-Vue.git"
+    "url": "https://gitee.com/y_project/eswell-Vue.git"
   },
   "dependencies": {
     "@riophae/vue-treeselect": "0.4.0",
