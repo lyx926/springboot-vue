@@ -48,7 +48,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2018-2021 eswell.vip All Rights Reserved.</span>
+      <span>Copyright © 2021 eswell All Rights Reserved.</span>
     </div>
   </div>
 </template>
@@ -155,14 +155,19 @@ export default {
   background-size: cover;
 }
 .title {
+  font-weight: 700;
   margin: 0px auto 30px auto;
   text-align: center;
-  color: #707070;
+  color: #000000;
+  //color: #707070;
 }
 
 .login-form {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  border: 1px solid #000000;
   border-radius: 6px;
-  background: #ffffff;
+  background: rgba(255,255,255,0.6);
+  //background: #ffffff;
   width: 400px;
   padding: 25px 25px 5px 25px;
   .el-input {
