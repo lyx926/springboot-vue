@@ -1,6 +1,8 @@
 package com.eswell.framework.web.service;
 
 import javax.annotation.Resource;
+
+import com.eswell.common.utils.sign.RsaUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -68,9 +70,11 @@ public class SysLoginService
         Authentication authentication = null;
         try
         {
+            System.out.println("接收加密密码 - "+password);
+            System.out.println("解密 - "+RsaUtils.decryptByPrivateKey(password));
             // 该方法会去调用UserDetailsServiceImpl.loadUserByUsername
             authentication = authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(username, password));
+                    .authenticate(new UsernamePasswordAuthenticationToken(username, RsaUtils.decryptByPrivateKey(password)));
         }
         catch (Exception e)
         {
