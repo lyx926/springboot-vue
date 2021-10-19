@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div>
-      测试websocket
-    </div>
     <el-input v-model="url" type="text" style="width: 20%" /> &nbsp; &nbsp;
     <el-button @click="join" type="primary">连接</el-button>
     <el-button @click="exit" type="danger">断开</el-button>
