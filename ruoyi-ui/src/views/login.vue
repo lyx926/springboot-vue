@@ -1,9 +1,14 @@
 <template>
   <div class="login">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-      <h3 class="title">埃斯韦尔后台管理系统</h3>
+      <h3 class="title">若依后台管理系统</h3>
       <el-form-item prop="username">
-        <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
+        <el-input
+          v-model="loginForm.username"
+          type="text"
+          auto-complete="off"
+          placeholder="账号"
+        >
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
@@ -18,7 +23,7 @@
           <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
-      <el-form-item prop="code" v-if="captchaOnOff">
+      <el-form-item prop="code" v-if="captchaEnabled">
         <el-input
           v-model="loginForm.code"
           auto-complete="off"
@@ -44,11 +49,14 @@
           <span v-if="!loading">登 录</span>
           <span v-else>登 录 中...</span>
         </el-button>
+        <div style="float: right;" v-if="register">
+          <router-link class="link-type" :to="'/register'">立即注册</router-link>
+        </div>
       </el-form-item>
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2021 eswell All Rights Reserved.</span>
+      <span>Copyright © 2018-2022 ruoyi.vip All Rights Reserved.</span>
     </div>
   </div>
 </template>
@@ -63,7 +71,6 @@ export default {
   data() {
     return {
       codeUrl: "",
-      cookiePassword: "",
       loginForm: {
         username: "admin",
         password: "admin123",
@@ -73,15 +80,18 @@ export default {
       },
       loginRules: {
         username: [
-          { required: true, trigger: "blur", message: "用户名不能为空" }
+          { required: true, trigger: "blur", message: "请输入您的账号" }
         ],
         password: [
-          { required: true, trigger: "blur", message: "密码不能为空" }
+          { required: true, trigger: "blur", message: "请输入您的密码" }
         ],
-        code: [{ required: true, trigger: "change", message: "验证码不能为空" }]
+        code: [{ required: true, trigger: "change", message: "请输入验证码" }]
       },
       loading: false,
-      captchaOnOff: true,
+      // 验证码开关
+      captchaEnabled: true,
+      // 注册开关
+      register: false,
       redirect: undefined
     };
   },
@@ -100,8 +110,8 @@ export default {
   methods: {
     getCode() {
       getCodeImg().then(res => {
-        this.captchaOnOff = res.captchaOnOff === undefined ? true : res.captchaOnOff;
-        if (this.captchaOnOff) {
+        this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled;
+        if (this.captchaEnabled) {
           this.codeUrl = "data:image/gif;base64," + res.img;
           this.loginForm.uuid = res.uuid;
         }
@@ -134,7 +144,7 @@ export default {
             this.$router.push({ path: this.redirect || "/" }).catch(()=>{});
           }).catch(() => {
             this.loading = false;
-            if (this.captchaOnOff) {
+            if (this.captchaEnabled) {
               this.getCode();
             }
           });
@@ -155,19 +165,14 @@ export default {
   background-size: cover;
 }
 .title {
-  font-weight: 700;
   margin: 0px auto 30px auto;
   text-align: center;
-  color: #000000;
-  //color: #707070;
+  color: #707070;
 }
 
 .login-form {
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-  border: 1px solid #000000;
   border-radius: 6px;
-  background: rgba(255,255,255,0.6);
-  //background: #ffffff;
+  background: #ffffff;
   width: 400px;
   padding: 25px 25px 5px 25px;
   .el-input {

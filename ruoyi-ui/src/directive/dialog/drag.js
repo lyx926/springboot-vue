@@ -1,6 +1,6 @@
 /**
 * v-dialogDrag 弹窗拖拽
-* Copyright (c) 2019 eswell
+* Copyright (c) 2019 ruoyi
 */
 
 export default {

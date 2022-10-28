@@ -1,9 +1,7 @@
 import request from '@/utils/request'
-import { encrypt } from '@/utils/jsencrypt'
+
 // 登录方法
 export function login(username, password, code, uuid) {
-  password = encrypt(password);
-  console.info("加密密码 - "+password)
   const data = {
     username,
     password,
@@ -12,6 +10,21 @@ export function login(username, password, code, uuid) {
   }
   return request({
     url: '/login',
+    headers: {
+      isToken: false
+    },
+    method: 'post',
+    data: data
+  })
+}
+
+// 注册方法
+export function register(data) {
+  return request({
+    url: '/register',
+    headers: {
+      isToken: false
+    },
     method: 'post',
     data: data
   })
@@ -37,6 +50,10 @@ export function logout() {
 export function getCodeImg() {
   return request({
     url: '/captchaImage',
-    method: 'get'
+    headers: {
+      isToken: false
+    },
+    method: 'get',
+    timeout: 20000
   })
 }
