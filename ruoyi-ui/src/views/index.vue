@@ -22,7 +22,7 @@
 export default {
   data() {
     return {
-      url: "ws://192.168.10.108:8080/websocket/message",
+      url: "ws://192.168.10.120:8080/websocket/message",
       message: "",
       text_content: "",
       ws: null,
