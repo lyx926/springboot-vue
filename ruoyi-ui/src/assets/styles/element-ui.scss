@@ -90,3 +90,15 @@
   .el-submenu__icon-arrow {
   display: none;
 }
+
+
+
+//更换颜色
+.el-table .warning-row {
+    background: #ff557f;
+    color: #FFF;
+  }
+
+.el-table--enable-row-hover .el-table__body tr:hover>td.el-table__cell {
+    color: #000;
+}
