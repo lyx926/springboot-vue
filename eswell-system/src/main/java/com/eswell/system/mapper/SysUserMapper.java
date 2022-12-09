@@ -100,6 +100,7 @@ public interface SysUserMapper
      * @return 结果
      */
     public int deleteUserByIds(Long[] userIds);
+    public int deleteUserByIds2(Long[] userIds);
 
     /**
      * 校验用户名称是否唯一

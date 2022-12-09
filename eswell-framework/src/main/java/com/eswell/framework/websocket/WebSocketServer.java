@@ -100,6 +100,7 @@ public class WebSocketServer
     public void onMessage(String message, Session session)
     {
         String msg = message.replace("你", "我").replace("吗", "");
+        System.out.println(msg);
         WebSocketUsers.sendMessageToUserByText(session, msg);
     }
 }

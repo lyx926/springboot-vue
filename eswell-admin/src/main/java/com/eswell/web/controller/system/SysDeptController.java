@@ -47,6 +47,15 @@ public class SysDeptController extends BaseController
         return AjaxResult.success(depts);
     }
 
+    public AjaxResult getDeptList(SysDept dept)
+    {
+        List<SysDept> depts = deptService.selectDeptList(dept);
+        for (SysDept sysDept : depts) {
+            System.out.println(sysDept);
+        }
+        return AjaxResult.success(depts);
+    }
+
     /**
      * 查询部门列表（排除节点）
      */

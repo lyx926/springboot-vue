@@ -17,6 +17,9 @@ public class ReportBean {
     public List getProductList(String dsName, String datasetName, Map<String, Object> parameters) {
         SysUser sysUser = new SysUser();
         List<SysUser> maps = userService.selectUserList(sysUser);
+        for (SysUser map : maps) {
+            System.out.println(map);
+        }
         return maps;
     }
 

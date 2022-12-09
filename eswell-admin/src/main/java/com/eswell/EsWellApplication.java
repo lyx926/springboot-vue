@@ -20,6 +20,6 @@ public class EsWellApplication
     {
         // System.setProperty("spring.devtools.restart.enabled", "false");
         SpringApplication.run(EsWellApplication.class, args);
-        System.out.println(" EsWell启动成功 ");
+        System.out.println(" EsWell-success ");
     }
 }

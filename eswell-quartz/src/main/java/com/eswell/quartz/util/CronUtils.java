@@ -60,4 +60,8 @@ public class CronUtils
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+
+    public static void main(String[] args) {
+        System.out.println("test cron");
+    }
 }
